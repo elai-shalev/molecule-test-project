@@ -5,10 +5,6 @@
     dest: /tmp/molecule_test_marker
     mode: "0644"
 
-- name: Gather package facts
-  ansible.builtin.package_facts:
-    manager: auto
-
 - name: Display OS information
   ansible.builtin.debug:
-    msg: "Running on {{ ansible_distribution }} {{ ansible_distribution_version }}"
+    msg: "Running on {{ ansible_distribution | default('unknown') }} {{ ansible_distribution_version | default('unknown') }}"
